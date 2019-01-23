@@ -28,7 +28,6 @@ public class BrowserClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
 
         if(url.indexOf("http",0) == 0 ||
                 url.indexOf("https",0) == 0){
@@ -44,7 +43,7 @@ public class BrowserClient extends WebViewClient {
                 return true;
             }
         }
-        return true;
+        return false;
     }
 
     @Override
