@@ -3,10 +3,10 @@ package com.flutter_webview_plugin;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,14 +28,12 @@ public class BrowserClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        view.loadUrl(url);
 
-        if(url.indexOf("http",0) == 0 ||
-                url.indexOf("https",0) == 0){
+        if (url.indexOf("http", 0) == 0 || url.indexOf("https", 0) == 0) {
             view.loadUrl(url);
             return super.shouldOverrideUrlLoading(view, url);
         }
-        if(enableAppScheme) {
+        if (enableAppScheme) {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 view.getContext().startActivity(intent);
